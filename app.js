@@ -1,7 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     // Initialize Lucide Icons
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
+        window.addEventListener('load', () => lucide.createIcons(), { once: true });
+    }
+
+    const todayDate = document.getElementById('today-date');
+    if (todayDate) {
+        const formattedDate = new Intl.DateTimeFormat('en-US', {
+            month: 'short',
+            day: '2-digit',
+            year: 'numeric'
+        }).format(new Date());
+        todayDate.textContent = formattedDate;
     }
 
     /* ==========================================================================
@@ -12,12 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Check localStorage for saved theme preference
     const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'light') {
-        body.classList.remove('dark-theme');
-        body.classList.add('light-theme');
-    } else {
+    if (savedTheme === 'dark') {
         body.classList.add('dark-theme');
         body.classList.remove('light-theme');
+    } else {
+        body.classList.remove('dark-theme');
+        body.classList.add('light-theme');
     }
 
     themeBtn.addEventListener('click', () => {
@@ -336,15 +352,35 @@ document.addEventListener('DOMContentLoaded', () => {
             const isMsgValid = checkField(msgInput, val => val.length > 0, 'message-error');
 
             if (isNameValid && isEmailValid && isMsgValid) {
-                // Simulate successful form submit
-                contactForm.style.opacity = '0';
-                setTimeout(() => {
-                    contactForm.style.display = 'none';
-                    successMsg.style.display = 'flex';
-                    setTimeout(() => {
-                        successMsg.classList.add('active');
-                    }, 50);
-                }, 300);
+                const formData = new FormData(contactForm);
+                const submitUrl = 'https://formsubmit.co/ajax/kzc5956@psu.edu';
+
+                fetch(submitUrl, {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json'
+                    },
+                    body: formData
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Submission failed');
+                        }
+                        return response.json();
+                    })
+                    .then(() => {
+                        contactForm.style.opacity = '0';
+                        setTimeout(() => {
+                            contactForm.style.display = 'none';
+                            successMsg.style.display = 'flex';
+                            setTimeout(() => {
+                                successMsg.classList.add('active');
+                            }, 50);
+                        }, 300);
+                    })
+                    .catch(() => {
+                        window.location.href = `mailto:kzc5956@psu.edu?subject=${encodeURIComponent('Portfolio inquiry from ' + nameInput.value.trim())}&body=${encodeURIComponent(`Name: ${nameInput.value.trim()}\nEmail: ${emailInput.value.trim()}\n\n${msgInput.value.trim()}`)}`;
+                    });
             }
         });
 
@@ -353,18 +389,19 @@ document.addEventListener('DOMContentLoaded', () => {
         emailInput.addEventListener('input', () => emailInput.parentElement.classList.remove('invalid'));
         msgInput.addEventListener('input', () => msgInput.parentElement.classList.remove('invalid'));
 
-        // Reset success state
-        resetSuccessBtn.addEventListener('click', () => {
-            successMsg.classList.remove('active');
-            setTimeout(() => {
-                successMsg.style.display = 'none';
-                contactForm.style.display = 'flex';
+        if (resetSuccessBtn) {
+            resetSuccessBtn.addEventListener('click', () => {
+                successMsg.classList.remove('active');
                 setTimeout(() => {
-                    contactForm.style.opacity = '1';
-                    contactForm.reset();
-                }, 50);
-            }, 300);
-        });
+                    successMsg.style.display = 'none';
+                    contactForm.style.display = 'flex';
+                    setTimeout(() => {
+                        contactForm.style.opacity = '1';
+                        contactForm.reset();
+                    }, 50);
+                }, 300);
+            });
+        }
     }
 
     /* ==========================================================================
@@ -400,10 +437,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 '  =======================================================',
 
         experience: 'Professional Timeline:\n' +
-                    '  1. Cybersecurity Intern @ Amsys IT Solutions (Jun 2025 - Present)\n' +
+                    '  1. Cybersecurity Intern @ Amsys IT Solutions (Jun 2025 - Aug 2025)\n' +
                     '     - Investigated phishing header routes and anomalies with Mimecast.\n' +
                     '     - Monitored SOC logs via SIEM/EDR, responding to threat events.\n' +
-                    '  2. Research Assistant @ Penn State Computer Science (Nov 2025 - Present)\n' +
+                    '  2. Research Assistant @ Penn State Computer Science (Nov 2025 - May 2026)\n' +
                     '     - Analyzing student metacognitive strategies in pair-programming with LLMs.\n' +
                     '  3. Volunteer Assistant @ Nanhi Pari Foundation (India, Summer 2024)\n' +
                     '     - Coordinated orphan education and wellness camps.',
@@ -415,9 +452,9 @@ document.addEventListener('DOMContentLoaded', () => {
                  '  - Contribution: Sketched wireframes, designed CSS layouts, project scheduler.',
 
         contact: 'Contact Info:\n' +
-                 '  - Email    :: karen.chhangani@psu.edu\n' +
-                 '  - LinkedIn :: linkedin.com/in/karenchhangani\n' +
-                 '  - GitHub   :: github.com/karenchhangani\n' +
+                 '  - Email    :: kzc5956@psu.edu\n' +
+                 '  - LinkedIn :: www.linkedin.com/in/kareen-chhangani-b08b23270\n' +
+                 '  - GitHub   :: github.com/karenc23\n' +
                  '  - Location :: State College, PA (Open to Relocation)',
 
         secret: 'Accessing classified sub-routing... \n' +

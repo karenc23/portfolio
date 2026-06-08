@@ -43,30 +43,95 @@
 
 /* Cute Dark Mode overrides */
 .dark-theme {
-    --bg-main: #241c1c;
-    --bg-secondary: #2f2525;
-    --bg-card: #3a2e2e;
-    --border-color: #fffdf9;
-    --text-primary: #fffdf9;
-    --text-secondary: #ebd9d9;
-    --text-muted: #bda6a6;
+    --bg-main: #14110f;
+    --bg-secondary: #1d1815;
+    --bg-card: #231d19;
+    --border-color: #d8c7b4;
+    --text-primary: #f6ebde;
+    --text-secondary: #d7c6b4;
+    --text-muted: #b8a392;
 
     /* Darkened Pastels */
-    --color-pink-light: #59353c;
-    --color-pink-bubbly: #ff758f;
-    --color-purple-light: #47335e;
-    --color-purple-bubbly: #a855f7;
-    --color-peach-light: #5e3f2d;
-    --color-peach-bubbly: #f97316;
-    --color-mint-light: #2c4f3a;
-    --color-mint-bubbly: #22c55e;
-    --color-blue-light: #254b63;
-    --color-blue-bubbly: #0ea5e9;
-    --color-yellow-light: #524f2e;
-    --color-yellow-bubbly: #eab308;
+    --color-pink-light: #423036;
+    --color-pink-bubbly: #f39bb0;
+    --color-purple-light: #383047;
+    --color-purple-bubbly: #b6a0ef;
+    --color-peach-light: #46372e;
+    --color-peach-bubbly: #eaa16f;
+    --color-mint-light: #274039;
+    --color-mint-bubbly: #79d2a6;
+    --color-blue-light: #1f3445;
+    --color-blue-bubbly: #8cc7ee;
+    --color-yellow-light: #474228;
+    --color-yellow-bubbly: #dec864;
     
     --shadow-flat: 6px 6px 0px var(--border-color);
     --shadow-flat-hover: 10px 10px 0px var(--border-color);
+}
+
+.dark-theme .header {
+    background: rgba(20, 17, 15, 0.96);
+}
+
+.dark-theme .terminal-container,
+.dark-theme .footer,
+.dark-theme .contact-info-card,
+.dark-theme .contact-form-card,
+.dark-theme .card,
+.dark-theme .theme-toggle,
+.dark-theme .tag-skill,
+.dark-theme .hero-socials a,
+.dark-theme .terminal-bar,
+.dark-theme .terminal-input-line,
+.dark-theme .webcam-fps,
+.dark-theme .bento-badge,
+.dark-theme .persona-btn,
+.dark-theme .persona-output,
+.dark-theme .countdown-widget,
+.dark-theme .contact-detail-item i,
+.dark-theme .contact-social-icon,
+.dark-theme .contact-social-badge,
+.dark-theme .success-icon-wrapper,
+.dark-theme .stat-icon-wrapper,
+.dark-theme .bento-icon-box {
+    background: rgba(255, 255, 255, 0.055);
+}
+
+.dark-theme .hero-section {
+    background:
+        radial-gradient(circle at top left, rgba(143, 109, 255, 0.14), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(241, 183, 168, 0.10), transparent 30%);
+}
+
+.dark-theme .hero-subtitle,
+.dark-theme .hero-description,
+.dark-theme .section-title,
+.dark-theme .section-header p,
+.dark-theme .about-bio,
+.dark-theme .edu-school,
+.dark-theme .edu-details-text,
+.dark-theme .bento-intro-text,
+.dark-theme .terminal-intro,
+.dark-theme .contact-info-card p,
+.dark-theme .contact-detail-item a,
+.dark-theme .contact-detail-item p,
+.dark-theme .footer p {
+    color: var(--text-secondary);
+}
+
+.dark-theme .hero-title,
+.dark-theme .highlight-text,
+.dark-theme .penn-state-text,
+.dark-theme .typing-text,
+.dark-theme .cursor,
+.dark-theme .logo-accent,
+.dark-theme .nav-link:hover,
+.dark-theme .nav-link.active,
+.dark-theme .terminal-title,
+.dark-theme .terminal-prompt,
+.dark-theme .term-highlight,
+.dark-theme .contact-detail-item h4 {
+    color: var(--text-primary);
 }
 
 /* ==========================================================================
@@ -293,6 +358,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 18px;
 }
 
 .logo {
@@ -304,6 +370,7 @@ body {
     display: flex;
     align-items: center;
     gap: 6px;
+    white-space: nowrap;
 }
 
 .logo-accent {
@@ -311,31 +378,32 @@ body {
 }
 
 .logo-sparkle {
-    font-size: 1.3rem;
-    animation: bounce-slow 3s infinite ease-in-out;
-}
-
-@keyframes bounce-slow {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-4px); }
+    display: none;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 24px;
+    gap: 14px;
+    align-items: center;
+    flex-wrap: nowrap;
 }
 
 .nav-link {
     font-family: var(--font-heading);
-    font-size: 0.95rem;
+    font-size: 0.88rem;
     font-weight: 700;
     color: var(--text-secondary);
     text-decoration: none;
     transition: var(--transition-smooth);
-    padding: 6px 12px;
+    padding: 6px 10px;
     border-radius: 10px;
     border: 2px solid transparent;
+    white-space: nowrap;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
 }
 
 .nav-link:hover, .nav-link.active {
@@ -347,7 +415,9 @@ body {
 .nav-actions {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 12px;
+    flex-shrink: 0;
+    margin-left: auto;
 }
 
 .theme-toggle {
@@ -387,8 +457,9 @@ body {
 }
 
 .nav-cta {
-    padding: 8px 16px;
-    font-size: 0.9rem;
+    padding: 7px 14px;
+    font-size: 0.82rem;
+    white-space: nowrap;
 }
 
 .mobile-menu-toggle {
@@ -405,20 +476,130 @@ body {
    ========================================================================== */
 .hero-section {
     position: relative;
-    padding-top: 160px;
-    padding-bottom: 90px;
-    display: flex;
-    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 160px 24px 90px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 320px);
+    gap: 32px;
     align-items: center;
-    text-align: center;
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 760px;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: 0;
+}
+
+.hero-side {
+    display: grid;
+    gap: 16px;
+    align-self: start;
+}
+
+.side-date-card,
+.lofi-card {
+    padding: 1rem 1rem 1.1rem;
+}
+
+.side-date-card {
+    display: grid;
+    gap: 0.35rem;
+    text-align: left;
+}
+
+.side-label {
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.side-date-card strong {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    color: var(--text-primary);
+}
+
+.side-date-card small {
+    color: var(--text-secondary);
+}
+
+.lofi-card {
+    display: grid;
+    gap: 0.95rem;
+}
+
+.lofi-head {
+    display: flex;
     align-items: center;
-    padding: 0 24px;
+    gap: 0.85rem;
+}
+
+.lofi-disc {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1rem;
+    display: grid;
+    place-items: center;
+    background: rgba(255, 255, 255, 0.62);
+    border: 2px solid var(--border-color);
+    box-shadow: 2px 2px 0px var(--border-color);
+}
+
+.lofi-head strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.lofi-head small {
+    color: var(--text-secondary);
+}
+
+.lofi-progress {
+    height: 0.35rem;
+    border-radius: 999px;
+    background: rgba(46, 36, 36, 0.12);
+    overflow: hidden;
+}
+
+.lofi-progress span {
+    display: block;
+    width: 42%;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--color-purple-bubbly), var(--color-pink-bubbly));
+}
+
+.lofi-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.lofi-controls button {
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 999px;
+    border: 2px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.7);
+    color: var(--text-primary);
+    display: grid;
+    place-items: center;
+    box-shadow: 2px 2px 0px var(--border-color);
+    cursor: pointer;
+    transition: var(--transition-bouncy);
+}
+
+.lofi-controls button:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--border-color);
 }
 
 .badge {
@@ -471,10 +652,11 @@ body {
 
 .hero-subtitle {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     font-weight: 700;
     color: var(--text-secondary);
     margin-bottom: 16px;
+    max-width: 34ch;
 }
 
 .highlight-text {
@@ -502,16 +684,16 @@ body {
 }
 
 .hero-description {
-    font-size: 1.15rem;
+    font-size: 1rem;
     color: var(--text-secondary);
-    max-width: 650px;
-    margin-bottom: 36px;
+    max-width: 42ch;
+    margin-bottom: 30px;
 }
 
 .hero-actions {
     display: flex;
     gap: 16px;
-    margin-bottom: 40px;
+    margin-bottom: 24px;
 }
 
 .hero-socials {
@@ -533,10 +715,24 @@ body {
     box-shadow: 3px 3px 0px var(--border-color);
 }
 
+.hero-socials a svg,
+.footer-links a svg,
+.theme-toggle svg,
+.mobile-menu-toggle svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+    stroke-width: 2;
+}
+
 .hero-socials a:hover {
     transform: translate(-3px, -3px);
     box-shadow: 6px 6px 0px var(--border-color);
     background: var(--color-pink-light);
+}
+
+.experience-actions {
+    margin: 18px 0 6px;
 }
 
 /* ==========================================================================
@@ -759,6 +955,16 @@ body {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+}
+
+.project-links {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 28px;
+}
+
+.project-links .cta-button {
+    margin: 0 auto;
 }
 
 .bento-container {
@@ -1488,6 +1694,26 @@ body {
     box-shadow: 2px 2px 0px var(--border-color);
 }
 
+.contact-social-badge {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #ffffff;
+    border: 2px solid var(--border-color);
+    color: var(--text-primary);
+    box-shadow: 2px 2px 0px var(--border-color);
+    display: grid;
+    place-items: center;
+}
+
+.contact-social-icon {
+    width: 16px;
+    height: 16px;
+    display: block;
+    flex-shrink: 0;
+}
+
 .contact-detail-item h4 {
     font-family: var(--font-heading);
     font-size: 0.85rem;
@@ -1723,6 +1949,34 @@ body {
     .contact-grid {
         grid-template-columns: 1fr;
     }
+
+    .hero-section {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-side {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1120px) {
+    .nav-links {
+        gap: 8px;
+    }
+
+    .nav-link {
+        padding: 5px 8px;
+        font-size: 0.83rem;
+    }
+
+    .nav-cta {
+        display: none;
+    }
 }
 
 /* Mobile View */
@@ -1742,7 +1996,16 @@ body {
     .hero-subtitle {
         font-size: 1.25rem;
     }
-    
+
+    .hero-side {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-actions,
+    .hero-socials {
+        flex-wrap: wrap;
+    }
+
     .nav-links {
         display: none;
     }
@@ -1753,6 +2016,10 @@ body {
     
     .nav-cta {
         display: none;
+    }
+
+    .logo {
+        font-size: 1.35rem;
     }
     
     .about-stats-container {
