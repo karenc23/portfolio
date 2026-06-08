@@ -422,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
               '  <span class="term-highlight">clear</span>      - Clean console window',
         
         about: 'Bio:\n' +
-               '  Name: Karen Chhangani\n' +
+               '  Name: Kareen Chhangani\n' +
                '  Education: Bachelor of Science in Computer Science\n' +
                '  Institution: The Pennsylvania State University (Class of 2028)\n' +
                '  GPA: 3.76 (Dean\'s List)\n' +
@@ -473,7 +473,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Append command line typed
                 const cmdLine = document.createElement('div');
                 cmdLine.className = 'terminal-line command-line';
-                cmdLine.innerHTML = `<span class="terminal-prompt">karen@shell:~$</span> ${rawInput}`;
+                cmdLine.innerHTML = `<span class="terminal-prompt">kareen@shell:~$</span> ${rawInput}`;
                 terminalOutput.appendChild(cmdLine);
 
                 // Add response
